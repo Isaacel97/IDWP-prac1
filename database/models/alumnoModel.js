@@ -3,7 +3,7 @@ const { Sequilize, DataTypes } = require('sequelize');
 
 const alumnoModel = sequelize.define('Alumno', {
     alumno_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     nombre: {
@@ -13,4 +13,6 @@ const alumnoModel = sequelize.define('Alumno', {
         type: DataTypes.STRING,
     }
 });
+
+alumnoModel.sync({ force: false });
 module.exports = alumnoModel;

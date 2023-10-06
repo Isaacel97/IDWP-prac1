@@ -1,4 +1,4 @@
-const Alumno = require('../models/alumnoModel');
+const Alumno = require('./models/alumnoModel');
 
 function Repository() {
     return{
@@ -6,7 +6,11 @@ function Repository() {
             await Alumno.create(student);
         },
         getAll: async() => {
-            return await Alumno.findAll();
+            try {
+                return await Alumno.findAll();
+            } catch (error) {
+                return error;
+            }   
         },
         getById: async(id) => {
             return Alumno.findAll({

@@ -1,13 +1,21 @@
-
-const getAlumnos = () =>{
-    return [{nombre: 'Juan', edad: 20}, {nombre: 'Ana', edad: 21}];
+function Controller(repository) {
+    return {
+        getAlumnos: async () => {
+            const res = await repository.getAll();
+            console.log(res);
+            return res;
+        },
+        getAlumnoById: async (id) => {
+            return await repository.getById(id);
+        },
+        addAlumno: async (nombre, email) => {
+            await repository.create({
+                "alumno_id": email,
+                "nombre": nombre,
+                "email": email
+            })
+        }
+    }
 }
 
-const guardarAlumno = (alumno) =>{
-    return alumno;
-};
-
-module.exports = {
-    getAlumnos: getAlumnos,
-    guardarAlumno: guardarAlumno
-}
+module.exports = Controller;

@@ -15,6 +15,4 @@ const open = async() => {
 }
 open();
 
-module.exports = {
-    sequelize: sequelize
-}
+module.exports = sequelize;

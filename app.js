@@ -1,19 +1,30 @@
 const express = require('express');
-const alumnos = require('./routes/alumnos');
-const users = require('./routes/users');
-const db = require('./config/db_connection');
-
+const path = require('path');
+const bodyParser = require('body-parser');
 const app = express();
 
-db.connectDB();
-app.use('/alumnos', alumnos);
-app.use('/users', users);
+const alumnos = require('./routes/api/alumnos');
+const alumno = require('./routes/alumno');
 
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(bodyParser.json());
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, './views'));
+
+app.use('/api/alumno', alumnos);
+app.use('/alumnos', alumno);
+app.get('/', (req, res) => {
+    res.render('index.ejs');
+});
 
 //text
-app.get('/', (req, res) => {
-    res.send('Konnichiwa minna!');
-});
+// app.get('/', (req, res) => {
+//     res.send('Konnichiwa minna!');
+// });
 
 //json
 // app.get('/alumnos', (req, res) => {
