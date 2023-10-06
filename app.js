@@ -6,6 +6,8 @@ const app = express();
 const alumnos = require('./routes/api/alumnos');
 const alumno = require('./routes/alumno');
 
+// para pull request
+// para validar cambios de pull request
 app.use(bodyParser.urlencoded({
     extended: true
 }));
