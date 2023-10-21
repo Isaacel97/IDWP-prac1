@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    background-color: aquamarine;
+}
+
+.navStyle {
+    min-height: 900px;
+    background: #f0f0f0;
+    padding: 50px;
+    margin: 50px;
+}
+
+
