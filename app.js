@@ -9,6 +9,7 @@ const alumno = require('./routes/alumno');
 const registro = require('./routes/api/registro');
 const login = require('./routes/api/login');
 
+const verifica = require('./middleware/verifyToken');
 // para pull request
 // para validar cambios de pull request
 app.use(bodyParser.urlencoded({
@@ -28,7 +29,8 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, './views'));
 
-app.use('/api/alumno', alumnos);
+
+app.use('/api/alumno', verifica,alumnos);
 app.use('/alumnos', alumno);
 app.get('/', (req, res) => {
     res.render('index.ejs');
