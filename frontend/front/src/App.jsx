@@ -1,7 +1,5 @@
 // no es necesario importar react porque no se usa jsx
-import Alumno from "./components/Alumno"
-import Layout from "./components/Layout"
-import Profesor from "./components/Profesor"
+import { Alumno, Profesor, Layout } from "./components";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import './App.css'
 
@@ -13,7 +11,7 @@ const App = () => {
   const etiHTML = (<><h2>Hola soy un sensei</h2><h3>Otro chimpallate</h3></>)
 
   return (
-    <div>
+    <>
      <div className="containerHeader">
       <h1>Konnichiwa minna!</h1>
      </div>
@@ -31,7 +29,7 @@ const App = () => {
         </Route>
       </Routes>
      </BrowserRouter>
-    </div>
+    </>
   )
 }
 

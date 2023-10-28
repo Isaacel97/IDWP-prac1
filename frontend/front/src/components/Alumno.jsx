@@ -1,15 +1,21 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 const Alumno = ({titulo, detalle = "Cargando detalle"}) => {
-
-    const [nombre, setNombre] = useState("Bienvenido");
+    const [text, setText] = useState("");
+    const [alumnos, setAlumnos] = useState([]);
+    
     const eventInput = (e) => {
-        setNombre(e.target.value);
+        setText(e.target.value);
     }
 
-    const reset = () => {
-        eventInput({target: {value: ""}})
-        setNombre("Bienvenido");
-    }
+    useEffect(()=>{
+        fetch("http://localhost:3000/api/alumno")
+        .then((res)=> res.json())
+        .then((json)=> {
+            console.log("seta")
+            setAlumnos(json.map(c=>c))   
+        })
+    },[])
+
   return (
     <div>
         <h1>{titulo}</h1>
@@ -19,8 +25,10 @@ const Alumno = ({titulo, detalle = "Cargando detalle"}) => {
             placeholder="Ingrese su nombre" 
             onChange={eventInput}
         />
-        <p>{nombre}</p>
-        <button onClick={reset}>Reset</button>
+        <p>{text}</p>
+        <ul>
+         {alumnos.map(alumno => (<li>{alumno.nombre + " " +alumno.email}</li>))}
+        </ul>
     </div>
   )
 }
