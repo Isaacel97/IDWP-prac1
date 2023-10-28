@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const environment = require('../../environment');
+const environment = require('../environment');
 const secret = environment.secret
 
 const verifyToken = (req, res, next) => {
